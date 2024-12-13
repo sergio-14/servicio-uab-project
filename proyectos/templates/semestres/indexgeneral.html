@@ -1,0 +1,78 @@
+{% extends 'p_principal.html' %}
+{% load static %}
+{% block content %}
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">LISTADO DE PROYECTOS EN GENERAL</h4>
+        </div>
+        <div>
+          <blockquote class="blockquote mb-0">
+            <div class="card-header">
+                <a name=""  class="btn btn-success" id="boton1" href="{% url 'crear' %}" role="button">
+                    Registrar Nuevo Proyecto <i class="bi bi-plus-square-dotted"></i>
+                </a>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead >
+                        <tr id="yuu">
+                            <th scope="col">TITULO</th>
+                            <th scope="col">FECHA CULMINACION</th>
+                            <th scope="col">Docente</th>
+                            <th scope="col">IMAGEN</th>
+                            
+                            
+                            <th scope="col">ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for program in programa %}
+                        <tr id="tbl">
+                            <td data-label="Titulo Proyecto">{{ program.Titulo }}</td>
+                            <td data-label="Fecha Finalizacion">{{ program.Fecha_Finalizacion }}</td>
+                            <td data-label="Docente">
+                                {% if program.T_Materia.user %}
+                                    {{ program.T_Materia.user.first_name }} {{ program.T_Materia.user.last_name }}
+                                {% else %}
+                                    Sin asignar
+                                {% endif %}
+                            </td>
+                            <td data-label="Imagen"> <img src="{{ program.Imagen.url }}" style="width: 100px; height: 60px; border-radius: 15px;" /></td>
+                            
+                            <td data-label="Acciones">
+                                <a name="" id="" class="btn btn-info" href="{% url 'editar' program.Id_Proyect %}" role="button">EDITAR</a> 
+                                |
+                                <a name="" id="" class="btn btn-danger" href="{% url 'eliminar' program.Id_Proyect %}" role="button">BORRAR</a>
+                            </td>
+                           
+                        <tr>
+                            {% endfor %}
+                           
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <br>
+            </blockquote>
+        </div>
+      </div>
+    <br>
+    <br>
+    <br>
+    <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+</div>
+{% endblock %}
